@@ -2,11 +2,14 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,15 +24,22 @@ import com.example.demo.model.Hr;
 import com.example.demo.service.HrService;
 
 
+
 @RestController
 @RequestMapping("/api/v1/hrman")
+@CrossOrigin("*")
 public class UserController {
-	
+	private final static Logger logger=LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private HrService hrService;
 	
 	@GetMapping("/getUser")
 	public ResponseEntity<List<Hr>>getUser(){
+		System.out.println("SOP");
+		logger.info("This is Bucks Bunny");
+		logger.debug("debug");
+		logger.warn("warn");
+		logger.error("error");
 		return ResponseEntity.status(200).body(hrService.getUser());
 	}
 	
